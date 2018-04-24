@@ -4,7 +4,7 @@ CFLAGS = -g -Wall -pedantic -std=c++11
 scrambler.out: main.o scrambler.o makefile
 	$(CC) $(CFLAGS) main.o scrambler.o -o scrambler.out
 
-main.o: main.cpp
+main.o: main.cpp scrambler.h
 	$(CC) $(CFLAGS) main.cpp -c
 
 scrambler.o: scrambler.cpp scrambler.h
