@@ -1,15 +1,25 @@
 #include "scrambler.h"
+#include <iostream>
 #include <vector>
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
 #include <cstring>
 
-Word::Word()
+Word::Word (char* buffer)
 {
-	word = new char[20];
-	word[0] = '\0';
-	srand(time(NULL));
+	if (buffer[0] != '\0') {
+		std::cout << "Making word...\n";
+		// Copy buffer into word.
+		word = new char[20];
+		for (word_len = 0; buffer[word_len] != '\0'; ++word_len) {
+			word[word_len] = buffer[word_len];
+		}
+		word[word_len] = '\0';
+		srand(time(NULL));
+	} else
+		// TODO: Throw exception rather than quit.
+		std::cerr << "Attemting to create empty word.\n", exit(0);
 }
 
 Word::~Word()
@@ -17,44 +27,19 @@ Word::~Word()
 	delete[] word;
 }
 
-char *Word::get_word()
+void Word::scramble()
 {
-	return word;
-}
-
-void Word::scramble(char* input_word)
-{
-	if (input_word[0] != '\0') {
-		int word_size = 1;
-		word[0] = input_word[0];
-
-		// Copies input word into word.
-		for (int i = 1; input_word[i] != '\0'; ++i) {
-			word[i] = input_word[i];
-			++word_size;
-		}
-		word[word_size] = '\0';
-
-		// Fill available_i with list of available indices.
-		std:: vector<int> available_i;
-		for (int i = 1; i < (word_size - 1); ++i)
-			available_i.push_back(i);
-
-		// Take from the 2nd char. to the 2nd to last of input_word,
-		// assign to random index from available_i of word.
-		int index = -1;
-		for (int i = 1; i < (word_size - 1); ++i) {
-			index = rand() % (available_i.size() + 1);
-			word[available_i[index]] = input_word[i];
-			available_i.erase(std::remove(available_i.begin(), available_i.end(), index), available_i.end());
-		}
+	char *scrambled_word = new char[word_len];
+	scrambled_word[0] = word[0];
+	scrambled_word[word_len] = '\0';
+	scrambled_word[word_len - 1] = word[word_len - 1];
+	std::vector<char> origninal_word (word, word + word_len);
+	unsigned int element_to_transfer;
+	for (unsigned int i = 1; i < word_len - 1; ++i) {
+		element_to_transfer = (rand() % (origninal_word.size() - 2)) + 1;
+		scrambled_word[i] = origninal_word[element_to_transfer];
+		origninal_word.erase(origninal_word.begin() + element_to_transfer);
 	}
-}
-
-void Word::scramble(std::string input_word) {
-	char *c_input_word = new char[25];
-	strcpy(c_input_word, input_word.c_str());
-
-	scramble(c_input_word);
-	delete[] c_input_word;
+	delete[] word;
+	word = scrambled_word;
 }

@@ -12,3 +12,6 @@ scrambler.o: scrambler.cpp scrambler.h
 
 clean:
 	rm ./*.o
+
+vim:
+	vim ./scrambler.h ./scrambler.cpp main.cpp
