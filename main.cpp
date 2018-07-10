@@ -1,6 +1,5 @@
 #include "scrambler.h"
 #include <iostream>
-#include <vector>
 
 int main() {
 	std::cout << "Enter a word: ";

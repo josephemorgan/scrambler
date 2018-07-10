@@ -1,33 +1,22 @@
 #ifndef _SCRAMBLER_H_
 #define _SCRAMBLER_H_
 
-#include <string>
-#include <vector>
-
-class Word
-{
-private:
-	char *word;
-	unsigned char word_len;
-	bool state; // 0 is original input, 1 is scrambled
-
-public:
-	Word (char *buffer);
-	~Word();
-
-	void scramble();
-	char *get_word();
-};
-#endif
+#include "word.h"
+#include <queue>
+#include <fstream>
 
 class Scrambler
 {
 private:
-	std::vector<Word> *text_file;
+	std::ifstream infile;
+	std::ofstream outfile;
+	std::queue<Word> *buffer;
 
 public:
-	Scrambler();
+	Scrambler(std::istream);
+	Scrambler(std::istream, std::ostream);
 	~Scrambler();
 
 };
 
+#endif
