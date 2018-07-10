@@ -1,6 +1,8 @@
 #ifndef _WORD_H_
 #define _WORD_H_
 
+#include <string>
+
 class Word
 {
 private:
@@ -10,6 +12,7 @@ private:
 
 public:
 	Word (char *buffer);
+	Word (std::string buffer);
 	~Word();
 
 	void scramble();

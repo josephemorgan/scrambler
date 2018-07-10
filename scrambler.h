@@ -8,13 +8,13 @@
 class Scrambler
 {
 private:
-	std::ifstream infile;
-	std::ofstream outfile;
-	std::queue<Word> *buffer;
+	std::ifstream *m_infile;
+	std::ofstream *m_outfile;
+	std::queue<Word> *m_buffer;
 
 public:
-	Scrambler(std::istream);
-	Scrambler(std::istream, std::ostream);
+	Scrambler(std::ifstream*);
+	Scrambler(std::ifstream*, std::ofstream*);
 	~Scrambler();
 
 };

@@ -17,6 +17,10 @@ Word::Word (char* buffer)
 		std::cerr << "Attemting to create empty word.\n", exit(0);
 }
 
+Word::Word (std::string buffer) : Word (buffer.c_str())
+{
+}
+
 Word::~Word()
 {
 	delete[] word;
@@ -24,6 +28,7 @@ Word::~Word()
 
 void Word::scramble()
 {
+	// TODO: Fix to handle punctuation.
 	char *scrambled_word = new char[word_len];
 	scrambled_word[0] = word[0];
 	scrambled_word[word_len] = '\0';
@@ -39,3 +44,10 @@ void Word::scramble()
 	word = scrambled_word;
 	std::cout << std::string(word) << std::endl;
 }
+/* if ( // If the last char in the word is punctuation. Trust me.
+ *     (
+ *      word_buffer[word_buffer.length() - 1] >= 0x41 &&
+ *      word_buffer[word_buffer.length() - 1] <= 0x5A) || (
+ *      word_buffer[word_buffer.length() - 1] >= 0x61 &&
+ *      word_buffer[word_buffer.length() - 1] <= 0x7A)
+ *    ) */
