@@ -17,6 +17,8 @@ public:
 	Scrambler(std::ifstream*, std::ofstream*);
 	~Scrambler();
 
+	void normalize_output();
+
 };
 
 #endif

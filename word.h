@@ -7,7 +7,7 @@ class Word
 {
 private:
 	char *word;
-	unsigned char word_len;
+	unsigned word_len;
 	bool state; // 0 is original input, 1 is scrambled
 
 public:
@@ -20,6 +20,7 @@ public:
 
 	void scramble();
 	std::string get_word();
+	unsigned get_len();
 };
 
 #endif

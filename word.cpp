@@ -71,10 +71,8 @@ std::string Word::get_word()
 {
 	return std::string(word);
 }
-/* if ( // If the last char in the word is punctuation. Trust me.
- *     (
- *      word_buffer[word_buffer.length() - 1] >= 0x41 &&
- *      word_buffer[word_buffer.length() - 1] <= 0x5A) || (
- *      word_buffer[word_buffer.length() - 1] >= 0x61 &&
- *      word_buffer[word_buffer.length() - 1] <= 0x7A)
- *    ) */
+
+unsigned Word::get_len()
+{
+	return word_len;
+}
