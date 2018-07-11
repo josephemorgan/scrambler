@@ -19,7 +19,12 @@ Scrambler::Scrambler(std::ifstream *infile, std::ofstream *outfile)
 		Word temp_word(word_buffer);
 		m_buffer->push(temp_word);
 	}
-	while (!m_buffer->empty())
+	while (!m_buffer->empty()) {
+		m_buffer->front().scramble();
+		*outfile << m_buffer->front().get_word() << " ";
+		m_buffer->pop();
+	}
+
 }
 
 Scrambler::~Scrambler()

@@ -13,10 +13,13 @@ private:
 public:
 	Word (char *buffer);
 	Word (std::string buffer);
+	Word(const Word&);
 	~Word();
 
+	Word& operator=(const Word&);
+
 	void scramble();
-	char *get_word();
+	std::string get_word();
 };
 
 #endif

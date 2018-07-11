@@ -1,12 +1,13 @@
 #include "scrambler.h"
 #include <iostream>
 
+const unsigned MAX_WORD_LENGTH = 32;
+
 Word::Word (char* buffer)
 {
 	if (buffer[0] != '\0') {
-		std::cout << "Making word...\n";
 		// Copy buffer into word.
-		word = new char[20];
+		word = new char[MAX_WORD_LENGTH];
 		for (word_len = 0; buffer[word_len] != '\0'; ++word_len) {
 			word[word_len] = buffer[word_len];
 		}
@@ -17,13 +18,32 @@ Word::Word (char* buffer)
 		std::cerr << "Attemting to create empty word.\n", exit(0);
 }
 
-Word::Word (std::string buffer) : Word (buffer.c_str())
+Word::Word (std::string buffer)
 {
+	word = new char[MAX_WORD_LENGTH];
+	for (word_len = 0; buffer.c_str()[word_len] != '\0'; ++word_len) {
+		word[word_len] = buffer[word_len];
+	}
 }
 
 Word::~Word()
 {
 	delete[] word;
+}
+
+Word::Word (const Word& copy_from)
+{
+	operator=(copy_from);
+}
+
+Word& Word::operator=(const Word &copy_from)
+{
+	word_len = copy_from.word_len;
+	state = copy_from.state;
+	word = new char[MAX_WORD_LENGTH];
+	for (unsigned i = 0; i < MAX_WORD_LENGTH; ++i)
+		word[i] = copy_from.word[i];
+	return *this;
 }
 
 void Word::scramble()
@@ -42,7 +62,11 @@ void Word::scramble()
 	}
 	delete[] word;
 	word = scrambled_word;
-	std::cout << std::string(word) << std::endl;
+}
+
+std::string Word::get_word()
+{
+	return std::string(word);
 }
 /* if ( // If the last char in the word is punctuation. Trust me.
  *     (
