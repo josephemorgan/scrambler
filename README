@@ -1,0 +1,22 @@
+Te'rhes a psot that shows up on faecbook smitemoes that cailms taht as lnog as
+the fsrit and lsat leertts of a wrod are in thier crocret psistioon, it
+don'set mtetar what oedrr the rest of the lttrees are in; yo'lul siltl be able
+to usdnrtnead tmhe. The last time the post pppoed up on my fdee, I sratetd to
+wdoner if tihs was ture for any abrriraty iupnt. Tihs prgroam srvees to take a
+text file as an input, and scalbmre the intnearl ltrtees of each wrod, livneag
+the fisrt and last as they aer. 
+
+
+There's a post that shows up on facebook sometimes that claims that as long as
+the first and last letters of a word are in their correct positions, it
+doesn't matter what order the rest of the letters are in; you'll still be able
+to understand them. The last time the post popped up on my feed, I started to
+wonder if this was true for any arbitrary input. This program serves to take a
+text file as an input, and scramble the internal letters of each word, leaving
+the first and last as they are.
+
+
+
+To test it yourself, run scrambler.out from a directory that contains a file
+called <input.txt>. A file called output.txt will be created, (hopefully)
+hopefully with the scrambled contents of input.txt.

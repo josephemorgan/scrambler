@@ -1,5 +1,6 @@
 #include "scrambler.h"
 #include <iostream>
+#include <ctime>
 
 const unsigned MAX_WORD_LENGTH = 32;
 
@@ -20,6 +21,7 @@ Word::Word (char* buffer)
 
 Word::Word (std::string buffer)
 {
+	srand(time(NULL));
 	word = new char[MAX_WORD_LENGTH];
 	for (word_len = 0; buffer.c_str()[word_len] != '\0'; ++word_len) {
 		word[word_len] = buffer[word_len];
@@ -33,6 +35,7 @@ Word::~Word()
 
 Word::Word (const Word& copy_from)
 {
+	srand(time(NULL));
 	operator=(copy_from);
 }
 
