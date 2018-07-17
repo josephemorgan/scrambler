@@ -30,7 +30,7 @@ Scrambler::Scrambler(std::ifstream *infile, std::ofstream *outfile)
 			char_counter = 0;
 		}
 
-		*outfile << m_buffer->front().get_word() << " ";
+		*outfile << m_buffer->front().get_word(true) << " ";
 		m_buffer->pop();
 	}
 

@@ -6,9 +6,11 @@
 class Word
 {
 private:
-	char *word;
-	unsigned word_len;
-	bool state; // 0 is original input, 1 is scrambled
+	char *p_word;
+	unsigned m_word_len;
+	bool m_state; // 0 is original input, 1 is scrambled
+
+	bool is_punctuation(char);
 
 public:
 	Word (char *buffer);
@@ -19,7 +21,7 @@ public:
 	Word& operator=(const Word&);
 
 	void scramble();
-	std::string get_word();
+	std::string get_word(bool debug = false);
 	unsigned get_len();
 };
 
